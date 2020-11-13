@@ -1,9 +1,15 @@
 const FilmModel = require('../models/Film')
 
 module.exports = class FilmDatabase {
-  
+
   async getFilmById({ filmId }) {
-    return filmModel.findById({ _id: filmId })
+    return FilmModel.findById({ _id: filmId })
+      .lean()
+      .exec();
+  }
+
+  async getFilmByDate({ filmdate }) {
+    return FilmModel.findOne({ date: filmdate })
       .lean()
       .exec();
   }
